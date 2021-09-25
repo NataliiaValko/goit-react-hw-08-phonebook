@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { FiPhoneCall } from 'react-icons/fi';
-import { contactsOperations } from '../../redux/contacts';
+import { contactsOperations } from 'redux/contacts';
 import s from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number }) => {

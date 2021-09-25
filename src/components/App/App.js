@@ -2,12 +2,12 @@ import ReactNotification from 'react-notifications-component';
 import { useEffect } from 'react';
 import 'react-notifications-component/dist/theme.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { contactsSelectors, contactsOperations } from '../../redux/contacts';
-import Section from '../Section';
-import Container from '../Container';
-import ContactForm from '../ContactForm';
-import Filter from '../Filter';
-import ContactList from '../ContactList';
+import { contactsSelectors, contactsOperations } from 'redux/contacts';
+import Section from 'components/Section';
+import Container from 'components/Container';
+import ContactForm from 'components/ContactForm';
+import Filter from 'components/Filter';
+import ContactList from 'components/ContactList';
 
 import s from './App.module.css';
 

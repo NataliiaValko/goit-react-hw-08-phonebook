@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import s from './Section.module.css';
-import Container from '../Container';
+import Container from 'components/Container';
 
 const Section = ({ nameForClass, children }) => (
   <section className={s[`${nameForClass}`]}>

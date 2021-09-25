@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { contactsSelectors } from '../../redux/contacts';
+import { contactsSelectors } from 'redux/contacts';
 import { store } from 'react-notifications-component';
-import { contactsOperations } from '../../redux/contacts';
+import { contactsOperations } from 'redux/contacts';
 import s from './ContactForm.module.css';
 
 const ContactForm = () => {

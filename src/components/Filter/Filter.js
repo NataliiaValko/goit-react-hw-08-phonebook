@@ -1,6 +1,6 @@
-import { changeFilter } from '../../redux/contacts';
+import { changeFilter } from 'redux/contacts';
 import { useSelector, useDispatch } from 'react-redux';
-import { contactsSelectors } from '../../redux/contacts';
+import { contactsSelectors } from 'redux/contacts';
 import { GoSearch } from 'react-icons/go';
 import s from './Filter.module.css';
 
