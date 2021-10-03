@@ -12,7 +12,7 @@ import {
   getContactsError,
 } from './contacts-actions';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+// axios.defaults.baseURL = 'http://localhost:3000';
 
 const getContacts = () => dispatch => {
   dispatch(getContactsRequest());

@@ -59,4 +59,5 @@
 .button:hover,
 .button:focus {
   background-color: rgba(212, 75, 75, 0.74);
+  color: white;
 }

@@ -3,6 +3,9 @@ import { useEffect } from 'react';
 import 'react-notifications-component/dist/theme.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsSelectors, contactsOperations } from 'redux/contacts';
+import FormaLogIn from 'components/FormaLogIn';
+import FormaSignUp from 'components/FormaSignUp';
+import UserMenu from 'components/UserMenu';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import ContactForm from 'components/ContactForm';
@@ -21,8 +24,19 @@ const App = () => {
   return (
     <>
       <ReactNotification />
+      <Section nameForClass={'section'}>
+        <div className={s.wrapperFormaLogIn}>
+          <FormaLogIn />
+        </div>
+      </Section>
+      <Section nameForClass={'section'}>
+        <div className={s.wrapperFormaSignUp}>
+          <FormaSignUp />
+        </div>
+      </Section>
       <header className={s.header}>
         <Container>
+          <UserMenu /> {/*///////////////////////////////////////*/}
           <h1 className={s.title}>My phonebook</h1>
         </Container>
       </header>

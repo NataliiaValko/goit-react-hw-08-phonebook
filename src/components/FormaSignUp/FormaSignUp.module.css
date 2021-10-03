@@ -1,0 +1,12 @@
+.form {
+  margin: 0;
+  font-family: 'DM Serif Display', serif;
+  background-image: url(/goit-react-hw-08-phonebook/static/media/AdobeStock.93ae18d3.jpg);
+  background-color: rgba(215, 222, 233, 0.486);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-attachment: fixed;
+  text-align: center;
+  min-height: 100vh;
+}
