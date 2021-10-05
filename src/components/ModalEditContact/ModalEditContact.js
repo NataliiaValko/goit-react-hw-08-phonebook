@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from 'redux/contacts';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import s from './ModalEditContact.module.css';
 
@@ -41,7 +42,6 @@ const ModalEditContact = ({ id, name, number }) => {
       <Button className={s.buttonEdit} onClick={handleShow}>
         Edit
       </Button>
-
       <Modal
         show={show}
         onHide={handleClose}
@@ -91,7 +91,6 @@ const ModalEditContact = ({ id, name, number }) => {
               type="submit"
               aria-label="button-edit"
               className={s.buttonDoneEdit}
-              s
             >
               Edit
             </Button>

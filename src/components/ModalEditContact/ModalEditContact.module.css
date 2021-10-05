@@ -44,6 +44,7 @@ button.buttonCancel {
   padding: 50px;
   background-color: rgba(205, 213, 228, 0.486);
   border-radius: 10px;
+  /* width: 600px; */
 }
 
 .label {

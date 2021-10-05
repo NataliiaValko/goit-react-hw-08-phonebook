@@ -1,7 +1,7 @@
 import ReactNotification from 'react-notifications-component';
 import { useEffect, Suspense, lazy } from 'react';
 import 'react-notifications-component/dist/theme.css';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 import Header from 'components/Header';
@@ -25,8 +25,9 @@ const App = () => {
         <>
           <ReactNotification />
           <Header />
-          <Switch>
-            <Suspense fallback={<p>Load...</p>}>
+
+          <Suspense fallback={<p>Load...</p>}>
+            <Switch>
               <PublicRoute exact path="/">
                 <HomePage />
               </PublicRoute>
@@ -40,15 +41,24 @@ const App = () => {
                 <RegisterPage />
               </PublicRoute>
 
-              <PublicRoute path="/login" redirectedTo="/contacts" restricted>
+              <PublicRoute
+                exact
+                path="/login"
+                redirectedTo="/contacts"
+                restricted
+              >
                 <LoginPage />
               </PublicRoute>
 
-              <PrivateRoute path="/contacts" redirectedTo="/login">
+              <PrivateRoute exact path="/contacts" redirectedTo="/login">
                 <ContactsPage />
               </PrivateRoute>
-            </Suspense>
-          </Switch>
+
+              <Route>
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+          </Suspense>
         </>
       )}
     </>
