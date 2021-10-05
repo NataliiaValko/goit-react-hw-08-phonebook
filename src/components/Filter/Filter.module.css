@@ -15,6 +15,7 @@
 }
 
 input::placeholder {
+  font-family: 'DM Serif Display', serif;
   font-size: 20px;
   line-height: 1.13;
   color: rgb(158, 157, 157);

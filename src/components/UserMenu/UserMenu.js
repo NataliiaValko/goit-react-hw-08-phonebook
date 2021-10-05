@@ -1,19 +1,20 @@
-import Avatar from '@material-ui/core/Avatar';
+import { useSelector, useDispatch } from 'react-redux';
+import { authOperations, authSelectors } from 'redux/auth';
 import s from './UserMenu.module.css';
 
 const UserMenu = () => {
+  const dispatch = useDispatch();
+  const email = useSelector(authSelectors.getUserEmail);
+
   return (
     <div className={s.userMenu}>
       <p className={s.text}>Welcome,</p>
-      <Avatar
-        sx={{
-          marginRight: 2,
-        }}
+      <p className={s.mail}>{email}</p>
+      <button
+        type="button"
+        className={s.button}
+        onClick={() => dispatch(authOperations.logOut())}
       >
-        VN
-      </Avatar>
-      <p className={s.mail}>romasskka@mail.com</p>
-      <button type="button" className={s.button} onClick={() => {}}>
         Exit
       </button>
     </div>

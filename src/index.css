@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'DM Serif Display', serif;
-  background-image: url('./img//AdobeStock.jpg');
+  background-image: url('./img/AdobeStock.jpg');
   background-color: rgba(215, 222, 233, 0.486);
   background-size: cover;
   background-repeat: no-repeat;
@@ -38,8 +38,6 @@ div.notification__item--danger .notification__timer {
 .mb-3 .form-control {
   font-family: 'DM Serif Display', serif;
   color: rgb(63, 63, 63);
-  /* width: 300px; */
-  /* margin-left: 16px; */
   padding: 10px 15px;
   height: 50px;
   border-radius: 10px;
@@ -54,28 +52,19 @@ div.notification__item--danger .notification__timer {
 }
 
 .mb-3 .form-label {
-  /* display: block; */
-  /* margin-bottom: 20px; */
   font-size: 22px;
   line-height: 1.3;
   color: rgb(90, 90, 90);
 }
 
-.btn.btn-primary {
-  display: block;
-  /* margin-left: auto; */
-  /* margin-right: 70px; */
-  width: 140px;
-  height: 50px;
-  border-radius: 10px;
-  border: none;
-  color: black;
-  background-color: rgb(155, 175, 211);
-  box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
-    rgb(0 0 0 / 30%) 0px 30px 60px -30px,
-    rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
-}
-
 .btn.btn-primary:hover {
   background-color: rgba(76, 132, 236, 0.788);
+}
+
+.MuiAppBar-positionFixed.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+  background-color: rgb(155, 175, 211);
+}
+
+a.activeLink {
+  color: rgba(76, 132, 236, 0.788);
 }

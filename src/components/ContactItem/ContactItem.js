@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import ModalEditContact from 'components/ModalEditContact';
 import { useDispatch } from 'react-redux';
 import { FiPhoneCall } from 'react-icons/fi';
 import { contactsOperations } from 'redux/contacts';
@@ -17,13 +18,14 @@ const ContactItem = ({ id, name, number }) => {
         </div>
       </a>
       <button
-        className={s.button}
+        className={s.buttonAccent}
         type="button"
         onClick={() => dispatch(contactsOperations.deleteContact(id))}
         aria-label="delete contact"
       >
         Delete
       </button>
+      <ModalEditContact id={id} name={name} number={number} />
     </>
   );
 };
@@ -31,7 +33,7 @@ const ContactItem = ({ id, name, number }) => {
 export default ContactItem;
 
 ContactItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
 };

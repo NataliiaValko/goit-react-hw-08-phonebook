@@ -7,6 +7,7 @@ import s from './Filter.module.css';
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(contactsSelectors.getFilter);
+
   const handleFilterValue = e =>
     dispatch(changeFilter(e.currentTarget.value.trim()));
 

@@ -1,60 +1,56 @@
 import ReactNotification from 'react-notifications-component';
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import 'react-notifications-component/dist/theme.css';
+import { Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { contactsSelectors, contactsOperations } from 'redux/contacts';
-import FormaLogIn from 'components/FormaLogIn';
-import FormaSignUp from 'components/FormaSignUp';
-import UserMenu from 'components/UserMenu';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import ContactForm from 'components/ContactForm';
-import Filter from 'components/Filter';
-import ContactList from 'components/ContactList';
+import { authOperations, authSelectors } from 'redux/auth';
+import Header from 'components/Header';
+import PrivateRoute from 'components/PrivateRoute';
+import PublicRoute from 'components/PublicRoute';
 
-import s from './App.module.css';
+const HomePage = lazy(() => import('../../pages/HomePage'));
+const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage'));
+const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const isGetCurrentUser = useSelector(authSelectors.getIsGetCurrentUser);
 
-  useEffect(() => dispatch(contactsOperations.getContacts()), [dispatch]);
-
-  const visibleItems = useSelector(contactsSelectors.getVisibleItems);
+  useEffect(() => dispatch(authOperations.getCurrentUser()), [dispatch]);
 
   return (
     <>
-      <ReactNotification />
-      <Section nameForClass={'section'}>
-        <div className={s.wrapperFormaLogIn}>
-          <FormaLogIn />
-        </div>
-      </Section>
-      <Section nameForClass={'section'}>
-        <div className={s.wrapperFormaSignUp}>
-          <FormaSignUp />
-        </div>
-      </Section>
-      <header className={s.header}>
-        <Container>
-          <UserMenu /> {/*///////////////////////////////////////*/}
-          <h1 className={s.title}>My phonebook</h1>
-        </Container>
-      </header>
-      <Section nameForClass={'section'}>
-        <div className={s.newContactWrapper}>
-          <h2 className={s.newContactTitle}>A new contact</h2>
-          <ContactForm />
-        </div>
-      </Section>
-      <Section nameForClass={'sectionList'}>
-        <h2 className={s.titleContacts}>Contacts</h2>
-        <Filter />
-        {visibleItems[0] ? (
-          <ContactList />
-        ) : (
-          <p className={s.text}>There’s nothing here yet...</p>
-        )}
-      </Section>
+      {!isGetCurrentUser && (
+        <>
+          <ReactNotification />
+          <Header />
+          <Switch>
+            <Suspense fallback={<p>Load...</p>}>
+              <PublicRoute exact path="/">
+                <HomePage />
+              </PublicRoute>
+
+              <PublicRoute
+                exact
+                path="/register"
+                redirectedTo="/contacts"
+                restricted
+              >
+                <RegisterPage />
+              </PublicRoute>
+
+              <PublicRoute path="/login" redirectedTo="/contacts" restricted>
+                <LoginPage />
+              </PublicRoute>
+
+              <PrivateRoute path="/contacts" redirectedTo="/login">
+                <ContactsPage />
+              </PrivateRoute>
+            </Suspense>
+          </Switch>
+        </>
+      )}
     </>
   );
 };

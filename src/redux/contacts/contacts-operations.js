@@ -1,45 +1,59 @@
-import axios from 'axios';
-import contactsApi from 'service/contacts-api';
-import {
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  getContactsRequest,
-  getContactsSuccess,
-  getContactsError,
-} from './contacts-actions';
+import phoneBookApi from 'service/contacts-api';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = 'http://localhost:3000';
+const getContacts = createAsyncThunk(
+  'contacts/fetchContacts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const contacts = await phoneBookApi.getContacts();
+      return contacts;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
-const getContacts = () => dispatch => {
-  dispatch(getContactsRequest());
+const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async (contact, { rejectWithValue }) => {
+    try {
+      const result = await phoneBookApi.addContact(contact);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
-  contactsApi
-    .getContacts()
-    .then(data => dispatch(getContactsSuccess(data)))
-    .catch(error => dispatch(getContactsError(error)));
+const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id, { rejectWithValue }) => {
+    try {
+      await phoneBookApi.deleteContact(id);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async (contact, { rejectWithValue }) => {
+    try {
+      const result = await phoneBookApi.editContact(contact);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+const contactsOperations = {
+  addContact,
+  deleteContact,
+  getContacts,
+  editContact,
 };
-
-const addContact = contact => dispatch => {
-  dispatch(addContactRequest());
-
-  contactsApi
-    .addContact(contact)
-    .then(data => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error)));
-};
-
-const deleteContact = id => dispatch => {
-  dispatch(deleteContactRequest());
-
-  contactsApi
-    .deleteContact(id)
-    .then(() => dispatch(deleteContactSuccess(id)))
-    .catch(error => dispatch(deleteContactError(error)));
-};
-const contactsOperations = { addContact, deleteContact, getContacts };
 
 export default contactsOperations;

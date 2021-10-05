@@ -2,7 +2,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 80px;
 }
 
 .avatar {
@@ -10,9 +9,8 @@
 }
 
 .text {
-  text-transform: uppercase;
-  font-size: 25px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 500;
   line-height: 1.3;
   margin-top: 0;
   margin-bottom: 0;
@@ -22,8 +20,11 @@
 
 .mail {
   display: block;
+  margin-top: 0;
   margin-right: 15px;
-  font-size: 22px;
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 500;
   line-height: 1.3;
   color: rgb(90, 90, 90);
 }
@@ -35,7 +36,7 @@
   border-radius: 10px;
   border: none;
   color: rgb(0, 0, 0);
-  background-color: #bdbdbd;
+  background-color: transparent;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
