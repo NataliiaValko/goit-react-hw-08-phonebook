@@ -17,6 +17,7 @@
   margin-top: 0;
   margin-bottom: 0;
   text-transform: capitalize;
+  word-wrap: break-word;
 }
 
 .wrapper {
