@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
+import ButtonGoogleLogin from 'components/ButtonGoogleLogin';
 import authOperations from 'redux/auth/auth-operations';
 import s from './FormaLogIn.module.css';
 
@@ -60,6 +61,8 @@ const FormaLogIn = () => {
         <Button className={s.buttonLog} type="submit">
           Log In
         </Button>
+        <span className={s.separator}>Or</span>
+        <ButtonGoogleLogin />
       </Form>
     </div>
   );
