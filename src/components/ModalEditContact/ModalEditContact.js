@@ -1,23 +1,54 @@
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { contactsOperations } from 'redux/contacts';
+import { useDispatch, useSelector } from 'react-redux';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { store } from 'react-notifications-component';
 import s from './ModalEditContact.module.css';
 
-const ModalEditContact = ({ id, name, number }) => {
+const ModalEditContact = ({ idEdit, name, number }) => {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const [newName, setNewName] = useState(name);
   const [newNumber, setNewNumber] = useState(number);
+  const items = useSelector(contactsSelectors.getItems);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const repeatCheck = newName => {
+    return items.find(
+      ({ name, id }) =>
+        name.toLowerCase() === newName.toLowerCase() && id !== idEdit,
+    );
+  };
+
+  const showNotification = () => {
+    store.addNotification({
+      title: 'Oops!',
+      message:
+        'But there’s already a contact with that name on your contact list',
+      type: 'danger',
+      insert: 'top',
+      container: 'top-right',
+      animationIn: ['animate__animated', 'animate__fadeIn'],
+      animationOut: ['animate__animated', 'animate__fadeOut'],
+      dismiss: {
+        duration: 3000,
+        onScreen: true,
+      },
+    });
+  };
+
   const handleEdit = e => {
     e.preventDefault();
-    const contact = { name: newName, number: newNumber, id };
+    if (repeatCheck(newName)) {
+      showNotification();
+      return;
+    }
+
+    const contact = { name: newName, number: newNumber, id: idEdit };
     dispatch(contactsOperations.editContact(contact));
     handleClose();
   };

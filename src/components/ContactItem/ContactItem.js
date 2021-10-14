@@ -25,7 +25,7 @@ const ContactItem = ({ id, name, number }) => {
       >
         Delete
       </button>
-      <ModalEditContact id={id} name={name} number={number} />
+      <ModalEditContact idEdit={id} name={name} number={number} />
     </>
   );
 };
