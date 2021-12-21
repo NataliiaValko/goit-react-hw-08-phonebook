@@ -19,9 +19,9 @@ const authSlice = createSlice({
     },
 
     [authOperations.logIn.fulfilled](state, { payload }) {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
+      state.user = payload?.user;
+      state.token = payload?.token;
+      state.isLoggedIn = payload && true;
     },
     [authOperations.getCurrentUser.pending](state, _) {
       state.isGetCurrentUser = true;

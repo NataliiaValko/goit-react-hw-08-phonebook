@@ -1,5 +1,4 @@
 import { GoogleLogin } from 'react-google-login';
-import { useDispatch } from 'react-redux';
 
 // refresh token
 import { refreshTokenSetup } from './refreshToken';
@@ -9,7 +8,6 @@ const clientId =
   '1053058699180-rjbu64pbbnr3glt31ten2uj7p4uv0jrn.apps.googleusercontent.com';
 
 const ButtonGoogleLogin = () => {
-  const dispatch = useDispatch();
   const onSuccess = res => {
     console.log('Login Success: currentUser:', res.profileObj);
     refreshTokenSetup(res);

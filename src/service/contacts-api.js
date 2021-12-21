@@ -26,28 +26,38 @@ const deleteContact = id => {
 const editContact = ({ id, name, number }) => {
   return axios
     .patch(`/contacts/${id}`, { name, number })
-    .then(({ data }) => data);
+    .then(({ data }) => data)
+    .catch(console.log);
 };
 
 const registerNewUser = async credentials => {
-  return axios.post('/users/signup', credentials).then(({ data }) => {
-    token.set(data.token);
-    return data;
-  });
+  return axios
+    .post('/users/signup', credentials)
+    .then(({ data }) => {
+      token.set(data.token);
+      return data;
+    })
+    .catch(console.log);
 };
 
 const loginUser = credentials => {
-  return axios.post('/users/login', credentials).then(({ data }) => {
-    token.set(data.token);
-    return data;
-  });
+  return axios
+    .post('/users/login', credentials)
+    .then(({ data }) => {
+      token.set(data.token);
+      return data;
+    })
+    .catch(console.log);
 };
 
 const getCurrentUser = persistToken => {
   token.set(persistToken);
-  return axios.get('/users/current').then(({ data }) => {
-    return data;
-  });
+  return axios
+    .get('/users/current')
+    .then(({ data }) => {
+      return data;
+    })
+    .catch(console.log);
 };
 
 const logOutUser = () => {
